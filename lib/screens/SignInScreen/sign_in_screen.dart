@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:craftyfurniture/screens/google/google_sign_in_button.dart';
 import 'package:craftyfurniture/screens/homescreen/homescreen.dart';
+import 'package:craftyfurniture/screens/homescreen/views/nothing.dart';
 import 'package:craftyfurniture/screens/shared_utils/button.dart';
 import 'package:craftyfurniture/screens/shared_utils/extension.dart';
 import 'package:craftyfurniture/screens/shared_utils/input_field.dart';
@@ -21,9 +24,26 @@ class _SigninscreenState extends State<Signinscreen> {
   Color? _containerColor;
 
   bool obscure = false;
+  bool enableButton = true;
+
+  @override
+  void isUpdated() {
+    setState(() {
+      enableButton = _email.text.isEmpty && _password.text.isEmpty;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _email.addListener(isUpdated);
+    _password.addListener(isUpdated);
+  }
 
   @override
   void dispose() {
+    _email.removeListener(isUpdated);
+    _password.removeListener(isUpdated);
     _email.dispose();
     _password.dispose();
     super.dispose();
@@ -130,10 +150,15 @@ class _SigninscreenState extends State<Signinscreen> {
                 hint: '********',
                 obscure: obscure,
                 suffixWidget: GestureDetector(
-                  child: const Icon(
-                    Icons.visibility_off,
-                    size: 30,
-                  ),
+                  child: obscure == true
+                      ? Icon(
+                          Icons.visibility_off,
+                          size: 30,
+                        )
+                      : Icon(
+                          Icons.visibility,
+                          size: 30,
+                        ),
                   onTap: () => setState(() {
                     obscure = !obscure;
                   }),
@@ -200,12 +225,15 @@ class _SigninscreenState extends State<Signinscreen> {
                 ],
               ),
               20.vSpace,
-              Button(
-                buttonName: 'Sign In',
-                onTap: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const Homescreen()));
-                },
+              Opacity(
+                opacity: enableButton ? 0.4 : 1,
+                child: Button(
+                  buttonName: 'Sign In',
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const Homescreen()));
+                  },
+                ),
               ),
               20.vSpace,
               GoogleSignInButton(
