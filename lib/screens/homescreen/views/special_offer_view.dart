@@ -143,7 +143,7 @@ class _SpecialOfferViewState extends State<SpecialOfferView> {
               ),
             ),
           ),
-          20.vSpace,
+          5.vSpace,
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(

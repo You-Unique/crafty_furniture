@@ -7,6 +7,8 @@ class InputField extends StatelessWidget {
   final Widget? suffixWidget;
   final bool obscure;
   final Widget? prefixWidget;
+  final Color? hintcolor;
+  final Color? labelcolor;
   const InputField({
     super.key,
     required this.textEditingController,
@@ -15,24 +17,28 @@ class InputField extends StatelessWidget {
     this.suffixWidget,
     this.hint,
     this.obscure = false,
+    this.hintcolor,
+    this.labelcolor,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      
       controller: textEditingController,
       obscureText: obscure,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: const TextStyle(
+        labelStyle: TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: 18,
-          // color: SkiColors.primaryColor,
+          color: labelcolor,
         ),
         hintText: hint,
-        hintStyle: const TextStyle(
+        hintStyle: TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: 20,
+          color: hintcolor,
         ),
         filled: true,
         prefixIcon: prefixWidget,

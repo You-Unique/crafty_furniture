@@ -15,73 +15,79 @@ class _TopBarViewState extends State<TopBarView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Container(
-              width: 50,
-              height: 50,
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.white),
-              child: const Icon(
-                Icons.person,
-                size: 50,
-              ),
-            ),
-            10.hSpace,
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Welcome,',
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 50,
+                height: 50,
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.white),
+                child: const Icon(
+                  Icons.person,
+                  size: 50,
                 ),
-                5.vSpace,
-                const Text(
-                  'Besnik Doe',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.black,
+              ),
+              10.hSpace,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Welcome,',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
                   ),
+                  5.vSpace,
+                  const Text(
+                    'Besnik Doe',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              Container(
+                width: 50,
+                height: 50,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
                 ),
-              ],
-            ),
-            const Spacer(),
-            Container(
-              width: 50,
-              height: 50,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
+                child: const Icon(
+                  Icons.notifications_on_sharp,
+                  size: 40,
+                  color: Colors.black,
+                ),
               ),
-              child: const Icon(
-                Icons.notifications_on_sharp,
-                size: 40,
-                color: Colors.black,
-              ),
+            ],
+          ),
+          30.vSpace,
+          InputField(
+            textEditingController: _searchController,
+            hint: 'Search Furniture',
+            hintcolor: Colors.grey,
+            prefixWidget: const Icon(
+              EvaIcons.search,
+              size: 30,
+              color: Colors.grey,
             ),
-          ],
-        ),
-        30.vSpace,
-        InputField(
-          textEditingController: _searchController,
-          hint: 'Search Furniture',
-          prefixWidget: const Icon(
-            EvaIcons.search,
-            size: 30,
+            suffixWidget: const Icon(
+              EvaIcons.options2,
+              size: 30,
+              color: Colors.grey,
+            ),
           ),
-          suffixWidget: const Icon(
-            EvaIcons.options2,
-            size: 30,
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

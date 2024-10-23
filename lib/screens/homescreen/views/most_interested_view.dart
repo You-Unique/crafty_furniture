@@ -146,12 +146,15 @@ class _MostInterestedViewState extends State<MostInterestedView> {
                 ),
               ),
               Spacer(),
-              Text(
-                'View All',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                  color: Colors.orangeAccent,
+              Padding(
+                padding: const EdgeInsets.only(right: 4),
+                child: Text(
+                  'View All',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    color: Colors.orangeAccent,
+                  ),
                 ),
               ),
             ],

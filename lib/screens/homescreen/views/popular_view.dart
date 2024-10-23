@@ -12,28 +12,31 @@ class _PopularState extends State<PopularView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.only(left: 20),
       child: Column(
         children: [
-          Row(
-            children: [
-              Text(
-                'Popular',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: Row(
+              children: [
+                Text(
+                  'Popular',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
                 ),
-              ),
-              Spacer(),
-              Text(
-                'View All',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                  color: Colors.orangeAccent,
+                Spacer(),
+                Text(
+                  'View All',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    color: Colors.orangeAccent,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           20.vSpace,
           SingleChildScrollView(

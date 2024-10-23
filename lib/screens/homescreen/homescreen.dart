@@ -1,6 +1,7 @@
 import 'package:craftyfurniture/screens/homescreen/views/most_interested_view.dart';
 import 'package:craftyfurniture/screens/homescreen/views/popular_view.dart';
 import 'package:craftyfurniture/screens/homescreen/views/special_offer_view.dart';
+import 'package:craftyfurniture/screens/homescreen/views/top_bar_view.dart';
 import 'package:craftyfurniture/screens/shared_utils/extension.dart';
 import 'package:craftyfurniture/screens/shared_utils/input_field.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -51,18 +52,25 @@ class _HomescreenState extends State<Homescreen> {
           });
         },
       ),
-      backgroundColor: Colors.orange,
+      backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
-              child: Center(
-                  child: Image.asset(
-                screenImages[currentIndex],
-                height: 1000,
-              )),
+              padding: const EdgeInsets.symmetric(vertical: 60),
+              child: Column(
+                children: [
+                  const TopBarView(),
+                  10.vSpace,
+                  const SpecialOfferView(),
+                  30.vSpace,
+                  const MostInterestedView(),
+                  10.vSpace,
+                  const PopularView(),
+                ],
+              ),
             )
           ],
         ),

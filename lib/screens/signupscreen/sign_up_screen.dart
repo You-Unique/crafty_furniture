@@ -71,16 +71,21 @@ class _SignupscreenState extends State<SignUpScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 50,
-                height: 50,
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.white),
-                child: const Icon(
-                  Icons.arrow_back,
-                  size: 30,
-                  color: Colors.black,
+              GestureDetector(
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white),
+                  child: const Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                    color: Colors.black,
+                  ),
                 ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
               ),
               30.vSpace,
               const Text(
@@ -138,10 +143,15 @@ class _SignupscreenState extends State<SignUpScreen> {
                 hint: '********',
                 obscure: passwordobscure,
                 suffixWidget: GestureDetector(
-                  child: const Icon(
-                    Icons.visibility_off,
-                    size: 30,
-                  ),
+                  child: passwordobscure == true
+                      ? const Icon(
+                          Icons.visibility_off,
+                          size: 30,
+                        )
+                      : const Icon(
+                          Icons.visibility,
+                          size: 30,
+                        ),
                   onTap: () => setState(
                     () {
                       passwordobscure = !passwordobscure;
@@ -163,10 +173,15 @@ class _SignupscreenState extends State<SignUpScreen> {
                 hint: '********',
                 obscure: confirmpasswordobscure,
                 suffixWidget: GestureDetector(
-                  child: const Icon(
-                    Icons.visibility_off,
-                    size: 30,
-                  ),
+                  child: confirmpasswordobscure == true
+                      ? const Icon(
+                          Icons.visibility_off,
+                          size: 30,
+                        )
+                      : const Icon(
+                          Icons.visibility,
+                          size: 30,
+                        ),
                   onTap: () => setState(
                     () {
                       confirmpasswordobscure = !confirmpasswordobscure;

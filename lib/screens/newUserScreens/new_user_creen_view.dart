@@ -3,7 +3,6 @@ import 'package:craftyfurniture/screens/newUserScreens/views/new_user_page_one.d
 import 'package:craftyfurniture/screens/newUserScreens/views/new_user_page_three.dart';
 import 'package:craftyfurniture/screens/newUserScreens/views/new_user_page_two.dart';
 import 'package:craftyfurniture/screens/shared_utils/button.dart';
-import 'package:craftyfurniture/screens/shared_utils/extension.dart';
 import 'package:craftyfurniture/screens/shared_utils/primary_colour.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +40,12 @@ class _NewuserscreenViewState extends State<NewuserscreenView> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> screenPages = <Widget>[
+      Newuserpageone(),
+      Newuserpagetwo(),
+      Newuserpagethree(),
+    ];
+
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: currentIndex == 2
@@ -105,48 +110,28 @@ class _NewuserscreenViewState extends State<NewuserscreenView> {
                     currentIndex = value;
                   },
                 ),
-                children: const [
-                  Newuserpageone(),
-                  Newuserpagetwo(),
-                  Newuserpagethree(),
-                ],
+                children: screenPages,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 80),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 12,
-                    height: 12,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: currentIndex == 0
-                            ? CraftsColor.primaryColor
-                            : Colors.grey),
+                children: List.generate(
+                  screenPages.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Container(
+                      width: 12,
+                      height: 12,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: currentIndex == index
+                              ? CraftsColor.primaryColor
+                              : Colors.grey),
+                    ),
                   ),
-                  10.hSpace,
-                  Container(
-                    width: 12,
-                    height: 12,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: currentIndex == 1
-                            ? CraftsColor.primaryColor
-                            : Colors.grey),
-                  ),
-                  10.hSpace,
-                  Container(
-                    width: 12,
-                    height: 12,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: currentIndex == 2
-                            ? CraftsColor.primaryColor
-                            : Colors.grey),
-                  ),
-                ],
+                ),
               ),
             )
           ],
