@@ -2,8 +2,9 @@ import 'package:craftyfurniture/screens/homescreen/views/most_interested_view.da
 import 'package:craftyfurniture/screens/homescreen/views/popular_view.dart';
 import 'package:craftyfurniture/screens/homescreen/views/special_offer_view.dart';
 import 'package:craftyfurniture/screens/homescreen/views/top_bar_view.dart';
+import 'package:craftyfurniture/screens/shared_utils/draggable_circle.dart';
 import 'package:craftyfurniture/screens/shared_utils/extension.dart';
-import 'package:craftyfurniture/screens/shared_utils/input_field.dart';
+import 'package:craftyfurniture/screens/shared_utils/primary_colour.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class _HomescreenState extends State<Homescreen> {
 
   @override
   Widget build(BuildContext context) {
-    final items = <Widget>[
+    final icons = <Widget>[
       Icon(EvaIcons.home, size: 30),
       Icon(EvaIcons.search, size: 30),
       Icon(EvaIcons.settings, size: 30),
@@ -37,6 +38,39 @@ class _HomescreenState extends State<Homescreen> {
     ];
 
     return Scaffold(
+      backgroundColor: Colors.grey[100],
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 60),
+                    child: Column(
+                      children: [
+                        const TopBarView(),
+                        10.vSpace,
+                        const SpecialOfferView(),
+                        30.vSpace,
+                        const MostInterestedView(),
+                        10.vSpace,
+                        const PopularView(),
+                        // DraggableCircle(),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            child: DraggableCircle(),
+          ),
+        ],
+      ),
       extendBody: true,
       bottomNavigationBar: CurvedNavigationBar(
         animationDuration: Duration(milliseconds: 400),
@@ -44,36 +78,15 @@ class _HomescreenState extends State<Homescreen> {
         index: currentIndex,
         height: 70,
         backgroundColor: Colors.transparent,
-        color: Colors.cyan,
-        items: items,
+        color: CraftsColor.primaryColor,
+        items: icons,
         onTap: (currentIndex) {
-          setState(() {
-            this.currentIndex = currentIndex;
-          });
+          setState(
+            () {
+              this.currentIndex = currentIndex;
+            },
+          );
         },
-      ),
-      backgroundColor: Colors.grey[100],
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 60),
-              child: Column(
-                children: [
-                  const TopBarView(),
-                  10.vSpace,
-                  const SpecialOfferView(),
-                  30.vSpace,
-                  const MostInterestedView(),
-                  10.vSpace,
-                  const PopularView(),
-                ],
-              ),
-            )
-          ],
-        ),
       ),
     );
   }

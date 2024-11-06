@@ -1,9 +1,7 @@
-import 'dart:math';
-
 import 'package:craftyfurniture/screens/google/google_sign_in_button.dart';
 import 'package:craftyfurniture/screens/homescreen/homescreen.dart';
-import 'package:craftyfurniture/screens/homescreen/views/nothing.dart';
 import 'package:craftyfurniture/screens/shared_utils/button.dart';
+import 'package:craftyfurniture/screens/shared_utils/draggable_circle.dart';
 import 'package:craftyfurniture/screens/shared_utils/extension.dart';
 import 'package:craftyfurniture/screens/shared_utils/input_field.dart';
 import 'package:craftyfurniture/screens/shared_utils/primary_colour.dart';
@@ -227,11 +225,11 @@ class _SigninscreenState extends State<Signinscreen> {
                         ),
                       ),
                       onTap: () {
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const SignUpScreen(),
-                        //   ),
-                        // );
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const DraggableCircle(),
+                          ),
+                        );
                       },
                     ),
                   ],
