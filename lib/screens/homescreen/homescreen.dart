@@ -5,8 +5,6 @@ import 'package:craftyfurniture/screens/homescreen/views/top_bar_view.dart';
 import 'package:craftyfurniture/screens/shared_utils/draggable_circle.dart';
 import 'package:craftyfurniture/screens/shared_utils/extension.dart';
 import 'package:craftyfurniture/screens/shared_utils/primary_colour.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
@@ -29,14 +27,6 @@ class _HomescreenState extends State<Homescreen> {
 
   @override
   Widget build(BuildContext context) {
-    final icons = <Widget>[
-      Icon(EvaIcons.home, size: 30),
-      Icon(EvaIcons.search, size: 30),
-      Icon(EvaIcons.settings, size: 30),
-      Icon(EvaIcons.person, size: 30),
-      Icon(EvaIcons.shoppingBag, size: 30),
-    ];
-
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: Stack(
@@ -58,7 +48,7 @@ class _HomescreenState extends State<Homescreen> {
                         const MostInterestedView(),
                         10.vSpace,
                         const PopularView(),
-                        // DraggableCircle(),
+                        40.vSpace,
                       ],
                     ),
                   )
@@ -67,26 +57,18 @@ class _HomescreenState extends State<Homescreen> {
             ),
           ),
           Positioned(
-            child: DraggableCircle(),
+            child: DraggableCircle(
+              height: 80,
+              width: 80,
+              color: CraftsColor.primaryColor,
+              child: Icon(
+                Icons.support_agent,
+                size: 50,
+                color: Colors.black,
+              ),
+            ),
           ),
         ],
-      ),
-      extendBody: true,
-      bottomNavigationBar: CurvedNavigationBar(
-        animationDuration: Duration(milliseconds: 400),
-        buttonBackgroundColor: Colors.white,
-        index: currentIndex,
-        height: 70,
-        backgroundColor: Colors.transparent,
-        color: CraftsColor.primaryColor,
-        items: icons,
-        onTap: (currentIndex) {
-          setState(
-            () {
-              this.currentIndex = currentIndex;
-            },
-          );
-        },
       ),
     );
   }

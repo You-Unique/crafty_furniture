@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:craftyfurniture/screens/SignInScreen/sign_in_screen.dart';
 import 'package:craftyfurniture/screens/newUserScreens/views/new_user_page_one.dart';
 import 'package:craftyfurniture/screens/shared_utils/extension.dart';
@@ -15,41 +13,9 @@ class SpecialOfferView extends StatefulWidget {
 }
 
 class _SpecialOfferViewState extends State<SpecialOfferView> {
-  final ScrollController _scrollController = ScrollController();
+//   final ScrollController _scrollController = ScrollController();
 
   int currentIndex = 0;
-
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    startAutoScroll();
-  }
-
-  void startAutoScroll() {
-    _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
-      if (_scrollController.hasClients) {
-        final maxScrollExtent = _scrollController.position.maxScrollExtent;
-        final currentScrollPosition = _scrollController.position.pixels;
-        final nextScrollPosition = currentScrollPosition + 200;
-
-        if (nextScrollPosition < maxScrollExtent) {
-          _scrollController.animateTo(
-            nextScrollPosition,
-            duration: const Duration(seconds: 5),
-            curve: Curves.easeInOut,
-          );
-        } else {
-          _scrollController.animateTo(
-            0, // scroll back to the top
-            duration: const Duration(seconds: 5),
-            curve: Curves.easeInOut,
-          );
-        }
-      }
-    });
-  }
 
   List<String> images = [
     'contimage',
@@ -102,13 +68,6 @@ class _SpecialOfferViewState extends State<SpecialOfferView> {
   }
 
   @override
-  void dispose() {
-    _timer?.cancel();
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 20),
@@ -125,6 +84,7 @@ class _SpecialOfferViewState extends State<SpecialOfferView> {
           ),
           20.vSpace,
           SingleChildScrollView(
+            // controller: _scrollController,
             scrollDirection: Axis.horizontal,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -135,7 +95,7 @@ class _SpecialOfferViewState extends State<SpecialOfferView> {
                   child: SpecialViewCard(
                     imagePath: images[index],
                     discount: discounts[index],
-                    onTap: () => screenNavigators,
+                    onTap: () => screenNavigators(context, index),
                     description: descriptions[index],
                     actiontext: actiontexts[index],
                   ),
@@ -145,22 +105,23 @@ class _SpecialOfferViewState extends State<SpecialOfferView> {
           ),
           5.vSpace,
           Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                images.length,
-                (index) => Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Container(
-                    width: 12,
-                    height: 12,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: currentIndex == index
-                            ? CraftsColor.primaryColor
-                            : Colors.grey),
-                  ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              images.length,
+              (index) => Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Container(
+                  width: 12,
+                  height: 12,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: currentIndex == index
+                          ? CraftsColor.primaryColor
+                          : Colors.grey),
                 ),
-              )),
+              ),
+            ),
+          ),
         ],
       ),
     );

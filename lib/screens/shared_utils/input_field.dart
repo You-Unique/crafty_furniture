@@ -24,7 +24,6 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
       controller: textEditingController,
       obscureText: obscure,
       decoration: InputDecoration(

@@ -20,11 +20,14 @@ class _NewuserscreenViewState extends State<NewuserscreenView> {
 
   void nextPage() {
     if (currentIndex < 2) {
+      // Move to the next page in the PageView
       _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
+        duration: const Duration(
+            milliseconds: 300), // Duration of the page transition
+        curve: Curves.easeInOut, // for the pages transitioning
       );
     } else {
+      // this check if its on the last page and remove all the remaining screen
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => const Newuserpagethree()),
         ModalRoute.withName('/'),
@@ -54,9 +57,13 @@ class _NewuserscreenViewState extends State<NewuserscreenView> {
               child: Button(
                   buttonName: 'Get Started',
                   onTap: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const Signinscreen()));
-                  }))
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const Signinscreen(),
+                      ),
+                    );
+                  }),
+            )
           : Padding(
               padding: const EdgeInsets.only(
                 bottom: 40,
